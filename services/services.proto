@@ -1,0 +1,25 @@
+syntax = "proto3";
+//define message types (schema sort of thing)
+package todoPackage;
+
+service Todo {
+    rpc createTodo(TodoItem) returns (TodoItem);
+    rpc readTodos(void) returns (TodoItems);
+}
+
+message void {
+    //this is the equivalent of NO PARAMETER
+}
+
+message newToDo {
+    string text = 2;
+}
+
+message TodoItem {
+    string id = 1;
+    string text = 2;
+}
+
+message TodoItems {
+    repeated TodoItem items = 2;
+}
