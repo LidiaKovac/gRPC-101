@@ -14,3 +14,5 @@ This is the repository for the basics of creating a gRPC server that can be cons
 Today my goal is to create an API that can execute all CRUD operations.
 
 Do you have feedback? Do not hesitate! Coding is all about always learning something new!
+
+To run this, I suggest splitting your terminal and running `npm run dev` on one terminal, manipulate the `client.js` file to test the different endpoints and finally running `node client.js` on the second terminal. 
