@@ -5,14 +5,16 @@ package todoPackage;
 service Todo {
     rpc createTodo(TodoItem) returns (TodoItem);
     rpc readTodos(void) returns (TodoItems);
+    rpc editTodo(TodoItem) returns (TodoItem);
+    rpc deleteTodo(id) returns (void);
 }
 
 message void {
     //this is the equivalent of NO PARAMETER
 }
 
-message newToDo {
-    string text = 2;
+message id {
+    string id = 1;
 }
 
 message TodoItem {
@@ -21,5 +23,5 @@ message TodoItem {
 }
 
 message TodoItems {
-    repeated TodoItem items = 2;
+    repeated TodoItem items = 1;
 }

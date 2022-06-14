@@ -1,6 +1,6 @@
 import grpc from "grpc"
 import protoLoader from "@grpc/proto-loader"
-import { readTodos, createTodo } from "./services/todo.js"
+import { readTodos, createTodo, editTodo, deleteToDo } from "./services/todo.js"
 
 //the proto file needs to be compiled
 
@@ -18,6 +18,8 @@ server.bind("localhost:3003", grpc.ServerCredentials.createInsecure())
 server.addService(todoPackage.Todo.service, {
   createTodo: createTodo,
   readTodos: readTodos,
+  editTodo: editTodo,
+  deleteTodo: deleteToDo
 })
 server.start() //starts the server
 console.log("server has started");

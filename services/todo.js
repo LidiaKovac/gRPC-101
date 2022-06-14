@@ -1,19 +1,51 @@
-import fs from "fs"
+import fs, { read } from "fs"
 import path from "path"
-import {readFile, __dirname, __filename} from "../utils.js"
+import { readFile, __dirname, __filename } from "../utils.js"
 
-
-export const createTodo = ({ request }, res) => {
+export const createTodo = ({ request }, send) => {
   let todos = []
-  console.log("here", request);
   let oldTodos = readFile("data/todo.json")
-  console.log(todos);
   todos = [...oldTodos, request]
-  console.log(todos);
-  fs.writeFileSync(path.join(__dirname, "data/todo.json"), JSON.stringify(todos), 'utf8', res)
+  fs.writeFileSync(
+    path.join(__dirname, "data/todo.json"),
+    JSON.stringify(todos),
+    "utf8",
+    send
+  )
   //req is the call
-  //res is the callback, should be a function
+  //send is the callback, should be a function
+  send(null, request)
 }
-export const readTodos = (req, res) => {
-  console.log(req)
+export const readTodos = (req, send) => {
+  let todos = readFile("data/todo.json")
+  send(null, todos)
+}
+
+export const editTodo = ({ request }, send) => {
+  let allTodos = readFile("data/todo.json")
+  let foundTodos = allTodos.filter((todo) => todo.id === request.id)
+  console.log(foundTodos)
+  let newTodos = allTodos.filter((todo) => todo.id !== request.id)
+  newTodos.push(request)
+  fs.writeFileSync(
+    path.join(__dirname, "data/todo.json"),
+    JSON.stringify(request),
+    "utf8",
+    send
+  )
+
+  if (foundTodos.length === 0) {
+    send("No todo found with id " + request.id, null)
+  } else send(null, request)
+}
+
+export const deleteToDo = ({ request }, send) => {
+  let allTodos = readFile("data/todo.json")
+  let newTodos = allTodos.filter((todo) => todo.id !== request.id)
+  fs.writeFileSync(
+    path.join(__dirname, "data/todo.json"),
+    JSON.stringify(newTodos),
+    "utf8",
+    send
+  )
 }
