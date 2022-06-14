@@ -4,12 +4,12 @@ package todoPackage;
 
 service Todo {
     rpc createTodo(TodoItem) returns (TodoItem);
-    rpc readTodos(void) returns (TodoItems);
+    rpc readTodos(empty) returns (TodoItems);
     rpc editTodo(TodoItem) returns (TodoItem);
-    rpc deleteTodo(id) returns (void);
+    rpc deleteTodo(id) returns (empty);
 }
 
-message void {
+message empty {
     //this is the equivalent of NO PARAMETER
 }
 

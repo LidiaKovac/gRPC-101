@@ -18,7 +18,7 @@ export const createTodo = ({ request }, send) => {
 }
 export const readTodos = (req, send) => {
   let todos = readFile("data/todo.json")
-  send(null, todos)
+  send(null, {items: todos})
 }
 
 export const editTodo = ({ request }, send) => {

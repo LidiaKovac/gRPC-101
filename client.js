@@ -18,15 +18,20 @@ const client = new todoPackage.Todo(
 console.log(client)
 // client.createTodo({id: uniqid(), text: "Buy Food"}, (err, res) => {
 //     if (err) console.log(err);
-//     else console.log(JSON.stringify(res));
+//     else console.log(res);
 // })
 
 // client.editTodo({id: "5441xkjzwl4e20m5w", text: "EDITED TODO"}, (err, res) => {
 //         if (err) console.log(err);
-//         else console.log(JSON.stringify(res));
+//         else console.log(res);
 //     })
 
-client.deleteTodo({ id: "5441xkjzwl4e20m5w" }, (err, res) => {
+// client.deleteTodo({ id: "5441xkjzwl4e20m5w" }, (err, res) => {
+//   if (err) console.log(err)
+//   else console.log(res)
+// })
+
+client.readTodos({}, (err, res) => {
   if (err) console.log(err)
-  else console.log(JSON.stringify(res))
+  else console.log(res)
 })
