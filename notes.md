@@ -1,4 +1,4 @@
-gRPC 101: 
+### gRPC 101: 
 
 - uses HTTP2 instead of HTTP
 - protocol buffers, a way to serialize data in a compact, binary way
